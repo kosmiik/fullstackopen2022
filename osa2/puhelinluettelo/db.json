@@ -1,0 +1,14 @@
+{
+  "persons": [
+    {
+      "name": "Miika Koskela",
+      "number": "0449704338",
+      "id": 13
+    },
+    {
+      "name": "Minna Koskela",
+      "number": "029129312",
+      "id": 17
+    }
+  ]
+}
