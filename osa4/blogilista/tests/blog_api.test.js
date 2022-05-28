@@ -60,6 +60,23 @@ describe('Testing post/delete-method with token...', () => {
 
   })
 
+  test('a valid blog without token cannot be added ', async () => {
+    const newBlog = {
+      title: 'Reijon hieno ploki',
+      author: 'Reijo',
+      url: 'www.reijo.fi',
+      likes: 8,
+      userId: '62912312cef07afef5a9a752'
+    }
+
+    await api
+      .post('/api/blogs')
+      .send(newBlog)
+      .expect(401)
+      .expect('Content-Type', /application\/json/)
+
+  })
+
   test('if "likes" is missing, it should be set to 0', async () => {
     const newBlog = {
       title: 'Ploki without likes',
