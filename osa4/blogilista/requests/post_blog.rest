@@ -1,9 +1,11 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ikphbm5lIiwiaWQiOiI2MjkxMjMxMmNlZjA3YWZlZjVhOWE3NTIiLCJpYXQiOjE2NTM3Njg3NzIsImV4cCI6MTY1Mzc3MjM3Mn0.AVb4gd8_lvlpYFO7aphcvIBSPijGz5YzuwT3R8M1vVM
 
 {
-    "title": "Keikkaploki",
-    "author": "Jussi",
-    "url": "www.keik.ka",
-    "likes": 
+    "title": "Jannen Ploki",
+    "author": "Janne",
+    "url": "www.jan.ne",
+    "likes": 50,
+    "userId": "62912312cef07afef5a9a752"
 }
