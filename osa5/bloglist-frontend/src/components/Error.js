@@ -7,13 +7,13 @@ const Error = ({ errormessage }) => {
     borderRadius: 5,
     padding: 10,
     marginBottom: 10
-  }  
+  }
 
 
-    if (errormessage === null) {
-      return null
-    }
-    else {
+  if (errormessage === null) {
+    return null
+  }
+  else {
     return (
       <div style={errorStyle}>
         {errormessage}
@@ -21,4 +21,4 @@ const Error = ({ errormessage }) => {
     )
   }
 }
-  export default Error
+export default Error

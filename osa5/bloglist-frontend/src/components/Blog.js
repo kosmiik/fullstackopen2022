@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-const Blog = ({blog, updateBlog, removeBlog}) => {
+const Blog = ({ blog, updateBlog, removeBlog }) => {
   const [showFull, setShowFull] = useState(false)
-  
+
   const fullView = () => {
     return (
       <div>
@@ -13,7 +13,7 @@ const Blog = ({blog, updateBlog, removeBlog}) => {
       </div>
     )
   }
-  
+
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
@@ -23,12 +23,23 @@ const Blog = ({blog, updateBlog, removeBlog}) => {
   }
 
   return (
-  <div style={blogStyle}>
-    {blog.title} {blog.author}&nbsp;
-    <button onClick={() => setShowFull(!showFull)}>{showFull ? 'hide': 'show'}</button>
+    <div style={blogStyle}>
+      {blog.title} {blog.author}&nbsp;
+      <button onClick={() => setShowFull(!showFull)}>{showFull ? 'hide': 'show'}</button>
       {showFull && fullView()}
-  </div>  
+    </div>
   )
 }
 
 export default Blog
+
+Blog.propTypes = {
+  updateBlog: PropTypes.func,
+  removeBlog: PropTypes.func,
+  blog: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    author: PropTypes.string,
+    url: PropTypes.string,
+    likes: PropTypes.number.isRequired
+  })
+}
