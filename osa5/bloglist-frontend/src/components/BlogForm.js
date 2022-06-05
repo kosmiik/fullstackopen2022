@@ -55,7 +55,7 @@ const BlogForm = ({ createBlog }) => {
           />
         </div>
         <br />
-        <button type="submit">create</button>
+        <button data-testid="create-button" type="submit">create</button>
       </form>
     </div>
   )

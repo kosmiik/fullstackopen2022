@@ -4,10 +4,11 @@ const Blog = ({ blog, updateBlog, removeBlog }) => {
   const [showFull, setShowFull] = useState(false)
 
   const fullView = () => {
+    console.log(blog)
     return (
       <div>
         {blog.url}<br />
-        {blog.likes} <button onClick={() => updateBlog(blog)}>like</button><br />
+        {blog.likes}&nbsp;<button onClick={() => updateBlog(blog)}>like</button><br />
         {blog.user.name}<br />
         <p><button onClick={() => removeBlog(blog)}>remove</button></p>
       </div>
@@ -23,7 +24,7 @@ const Blog = ({ blog, updateBlog, removeBlog }) => {
   }
 
   return (
-    <div style={blogStyle}>
+    <div className="blog" style={blogStyle}>
       {blog.title} {blog.author}&nbsp;
       <button onClick={() => setShowFull(!showFull)}>{showFull ? 'hide': 'show'}</button>
       {showFull && fullView()}

@@ -16,7 +16,7 @@ const App = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
-  const [update,setUpdate] = useState(null)
+  const [update, setUpdate] = useState(null)
   const blogFormRef = useRef()
 
 
@@ -27,7 +27,7 @@ const App = () => {
   }, [update])
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedNoteappUser')
+    const loggedUserJSON = window.localStorage.getItem('loggedBlogappUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
@@ -43,7 +43,7 @@ const App = () => {
         username, password,
       })
       window.localStorage.setItem(
-        'loggedNoteappUser', JSON.stringify(user)
+        'loggedBlogappUser', JSON.stringify(user)
       )
       blogService.setToken(user.token)
       setUser(user)
@@ -121,12 +121,14 @@ const App = () => {
   const removeBlog = async (blogObject) => {
 
     try {
-      await blogService.remove(blogObject)
-      setUpdate(Math.floor(Math.random()*777))
-      setMessage(`a blog ${blogObject.title} by ${blogObject.author} removed`)
-      setTimeout(() => {
-        setMessage(null)
-      }, 5000)
+      if (window.confirm(`Remove blog ${blogObject.title} by ${blogObject.author}`)) {
+        await blogService.remove(blogObject)
+        setUpdate(Math.floor(Math.random()*777))
+        setMessage(`a blog ${blogObject.title} by ${blogObject.author} removed`)
+        setTimeout(() => {
+          setMessage(null)
+        }, 5000)
+      }
     } catch (exception) {
       setErrorMessage('eeep, an error! (you are not authorized to remove this one?')
       setTimeout(() => {
