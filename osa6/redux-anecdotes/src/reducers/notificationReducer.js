@@ -23,7 +23,7 @@ export const setNote = (message, seconds) => {
   return dispatch => {
       clearTimeout(tOut)
       dispatch(addNote(message))
-      tOut = setTimeout(() => dispatch(hideNote()), seconds)
+      tOut = setTimeout(() => dispatch(hideNote()), seconds * 1000)
   }
 }
 export default noteSlice.reducer
