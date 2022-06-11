@@ -15,7 +15,6 @@ const Anecdote = ({ anecdote, handleClick }) => {
 const Anecdotes = () => {
   const dispatch = useDispatch()
   const anecdotes = useSelector(( { anecdotes, filter }) => {
-    console.log(anecdotes)
     if (filter.length >= 3) {
       const filtered = anecdotes.filter(f => f.content.includes(filter))
       return filtered.slice().sort((a, b) => (a.votes > b.votes ? -1 : 1))
