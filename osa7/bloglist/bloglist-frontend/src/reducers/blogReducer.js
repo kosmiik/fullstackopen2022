@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { render } from '@testing-library/react'
 import blogService from '../services/blogService'
 import { setMessage } from './notificationReducer'
 import { setErrorMessage } from './errorReducer'
