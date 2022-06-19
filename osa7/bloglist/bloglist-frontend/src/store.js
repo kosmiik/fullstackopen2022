@@ -3,6 +3,7 @@ import errorReducer from './reducers/errorReducer'
 import blogReducer from './reducers/blogReducer'
 import notificationReducer from './reducers/notificationReducer'
 import userReducer from './reducers/userReducer'
+import allUsersReducer from './reducers/allUsersReducer'
 //import filterReducer from './reducers/filterReducer'
 
 const store = configureStore({
@@ -10,7 +11,8 @@ const store = configureStore({
     blogs: blogReducer,
     notification: notificationReducer,
     error: errorReducer,
-    user: userReducer
+    user: userReducer,
+    users: allUsersReducer
     //filter: filterReducer
   }
 })
