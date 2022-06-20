@@ -1,11 +1,16 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { like, deleteBlog } from "../reducers/blogReducer";
-const Blog = ({ blog }) => {
+import { useParams, useNavigate } from "react-router-dom";
+const Blog = () => {
   const [showFull, setShowFull] = useState(false);
   const dispatch = useDispatch()
-  
+  const navigate = useNavigate()
+
+  const { id } = useParams()
+
+  const blog = useSelector((state) => state.blogs.find((b) => b.id === id))
+  console.log(blog)
   const updateBlog = async (blog) => {
     dispatch(like(blog))
 };
@@ -16,53 +21,50 @@ const removeBlog = async (blog) => {
       `Remove blog ${blog.title} by ${blog.author}`)
   ){
     dispatch(deleteBlog(blog))
+    navigate('/')
+
   }  
 };
 
   const fullView = () => {
+
+    if (!blog) {
+      return null
+    }
+
     return (
-      <div>
-        {blog.url}
-        <br />
-        {blog.likes}&nbsp;<button onClick={() => updateBlog(blog)}>like</button>
-        <br />
-        {blog.user.name}
-        <br />
-        <p>
-          <button onClick={() => removeBlog(blog)}>remove</button>
-        </p>
-      </div>
+      null
     );
   };
 
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
-    border: "solid",
+    border: "none",
     borderWidth: 1,
     marginBottom: 5,
   };
 
+  if (!blog) {
+    return null
+  }
+
   return (
+
     <div className="blog" style={blogStyle}>
-      {blog.title} {blog.author}&nbsp;
-      <button onClick={() => setShowFull(!showFull)}>
-        {showFull ? "hide" : "show"}
-      </button>
-      {showFull && fullView()}
-    </div>
+    <h3>{blog.title} by {blog.author}</h3>
+    {blog.url}
+    <br />
+    {blog.likes}&nbsp;<button onClick={() => updateBlog(blog)}>like</button>
+    <br />
+    {blog.user.name}
+    <br />
+    <p>
+      <button onClick={() => removeBlog(blog)}>remove</button>
+    </p>
+  </div>
   );
 };
 
 export default Blog;
 
-Blog.propTypes = {
-  updateBlog: PropTypes.func,
-  removeBlog: PropTypes.func,
-  blog: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    author: PropTypes.string,
-    url: PropTypes.string,
-    likes: PropTypes.number.isRequired,
-  }),
-};
